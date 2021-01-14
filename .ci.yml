@@ -3,8 +3,21 @@ jdk: 1.8
 build_tool: maven-3.3.9
 type: jar
 is_dependent: false
-job:
+stages:
+  - test
+  - deploy
+
+step1:
+    stage: test
     script:
-        - mvn -B -U clean install -Dmaven.test.skip=true
+        - mvn clean
+        - mvn -B -U org.jacoco:jacoco-maven-plugin:prepare-agent verify
+        - mvn -B -U org.jacoco:jacoco-maven-plugin:report
+
+step2:
+    stage: deploy
+    script:
+        - mvn -B -U install
+    is_pkg: true
     pkgType: hpi
     pkgFolder: target
