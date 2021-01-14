@@ -17,7 +17,7 @@ step1:
 step2:
     stage: deploy
     script:
-        - mvn -B -U install
+        - mvn -B -U install -Dmaven.test.skip=true
     is_pkg: true
     pkgType: hpi
     pkgFolder: target
