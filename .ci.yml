@@ -2,7 +2,6 @@ package: gerrit-code-review
 jdk: JDK8
 build_tool: maven-3.3.9
 type: jar
-is_dependent: false
 stages:
   - test
   - deploy
